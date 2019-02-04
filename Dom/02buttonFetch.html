@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Button Content Fetch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+
+    <button id="button1">First button</button>
+    <button id="button2">Second button</button>
+    <button id="button3">Third button</button>
+    
+
+    <script type="application/javascript">
+        (function(){
+            //option 1
+            var option1 = document.getElementsByTagName("button")[1].innerHTML;
+            console.log(option1 +"(this is the first means)");
+
+            //option 2
+            var option2 = document.getElementById("button2").innerText;
+            console.log(option2 +"(this is the second means)");
+        })();
+    </script>
+</body>
+</html>

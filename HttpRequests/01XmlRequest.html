@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Using raw XML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <!-- pokemon info container -->
+    <div id="pokeInfo">
+
+    </div>
+    </br>
+    <button id="fetchPoke">Get Poke Info</button>
+     </br>
+     </br>
+
+    <!-- Swapi info container -->     
+    <div id="swapiInfo">
+
+    </div>
+    </br>
+    <button id="fetchSwapi">Get Swapi Info</button>
+    
+    <!-- script -->
+    <script>
+        (function(){
+            const xmlPoke = new XMLHttpRequest();
+            const xmlSwapi = new XMLHttpRequest();
+
+            xmlPoke.onreadystatechange = () => {
+                if (xmlPoke.readyState === 4) {
+                    if (xmlPoke.status === 200){
+                        console.log(JSON.parse(xmlPoke.responseText).abilities[0]);
+                        document.getElementById("fetchPoke")
+                        .addEventListener("click", function (){
+                            var details = JSON.parse(xmlPoke.responseText).abilities[0];
+                            document.getElementById("pokeInfo").innerHTML = details;
+                        });
+                    }else{
+                        console.error('error');
+                    }       
+                }
+            }
+            xmlPoke.open('GET', 'http://pokeapi.co/api/v2/pokemon/bulbasaur/');
+            xmlPoke.send();
+
+            //
+            xmlSwapi.onreadystatechange = () => {
+                if (xmlSwapi.readyState === 4) {
+                    if (xmlSwapi.status === 200){
+                        console.log(JSON.parse(xmlSwapi.responseText).abilities[0]);
+                        document.getElementById("fetchSwapi")
+                        .addEventListener("click", function (){
+                            var profile = JSON.parse(xmlSwapi.responseText).abilities[0];
+                            document.getElementById("swapiInfo").innerHTML = profile;
+                        });
+                    }else{
+                        console.error('error');
+                    }                    
+                    
+                }
+            }
+            xmlSwapi.open('GET', 'https://swapi.co/api/species/3');
+            xmlSwapi.send();
+
+        })(); 
+    </script>
+</body>
+</html>

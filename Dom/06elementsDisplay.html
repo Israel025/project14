@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>10 Buttons &amp; Anchors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <div>
+
+    </div>
+    
+
+
+    <script type="application/javascript">
+        (function(){
+            var container = document.getElementsByTagName("div")[0];
+            
+            var links = {
+                Google: "https://www.google.com/",
+                Jumia: "https://www.jumia.com.ng/",
+                Yahoo: "https://www.yahoo.com/",
+                CNN: "https://edition.cnn.com/",
+                BBC: "https://www.bbc.com/",
+                Youtube: "https://www.youtube.com/",
+                Facebook: "https://www.youtube.com/",
+                Git: "https://git-scm.com/",
+                MDN: "https://developer.mozilla.org/en-US/",
+                Repl: "https://repl.it",
+            };
+
+            let siteNames = Object.keys(links);
+            let siteLinks = Object.values(links);
+        
+
+            for (let step=0; step < siteNames.length; step++){
+                var button = document.createElement("button");
+                var anchor = document.createElement("a");
+                var space = document.createElement("span");
+                var newLine = document.createElement("br");
+                
+                button.innerHTML = "Button " + (step+1);
+                anchor.innerHTML = siteNames[step];
+                anchor.setAttribute("href", siteLinks[step]);
+                space.innerText = "   ";
+
+                container.appendChild(button);
+                container.appendChild(space);
+                container.appendChild(anchor);
+                container.appendChild(newLine);
+
+            }
+
+        })();
+    </script>
+</body>
+</html>
