@@ -12,20 +12,20 @@
     </br>
 
     <!-- pokemon info container -->
-    <div id="pokeInfo">
+    <div id="pokeInfos">
 
     </div>
     </br>
-    <button id="fetchPoke">Get Poke Info</button>
+    <button id="fetchPokes">Get Poke Info</button>
      </br>
      </br>
 
     <!-- Swapi info container -->     
-    <div id="swapiInfo">
+    <div id="swapiInfos">
 
     </div>
     </br>
-    <button id="fetchSwapi">Get Swapi Info</button>
+    <button id="fetchSwapis">Get Swapi Info</button>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -33,26 +33,48 @@
         (function(){
             var newLine = document.createElement("br")
             //pokemon api call            
-            document.getElementById("fetchPoke")
+            document.getElementById("fetchPokes")
                 .addEventListener("click", function (){
-                    var pokeContainer = document.getElementById("pokeInfo");
+                    var pokeContainer = document.getElementById("pokeInfos");
                     axios.get('http://pokeapi.co/api/v2/berry-firmness/1')
                         .then(function (result){
-                            console.log(result.data.berries);
-                            var details = result.data.berries;
-                             for(var index = 0; index < details.lenght; index++){
-                                for(var key in index){
-                                    pokeContainer.innerHTML += `${key} : ${index[key]} `;
+                            // console.log(result.data.berries);
+                             var returned = result.data.berries;
+                            // console.log(returned.length);
+                            // console.log(returned[0].name);
+
+                             for(var index = 0; index < returned.length; index++){
+                                 var holder = returned[index];
+
+                                for(var key in holder){
+                                    pokeContainer.innerHTML += `${key} : ${holder[key]} `;
                                     pokeContainer.appendChild(newLine);
                                 }
                                 pokeContainer.appendChild(newLine);                               
                             }      
                         })
                         .catch(function(error){
-                            console.error(error)
+                            pokeContainer.innerHTML = error;
                         })
                 
-               })
+              });
+
+            //swapi api call
+            document.getElementById("fetchSwapis")
+                .addEventListener("click", function (){
+                    var swapiContainer = document.getElementById("swapiInfos");
+                    axios.get('https://swapi.co/api/planets/1/')
+                        .then(function (profile){
+                            var needed = profile.data;              
+                            for(var key in needed){
+                                swapiContainer.innerHTML += `${key} : ${needed[key]} `;
+                                swapiContainer.appendChild(newLine);
+                            }                                    
+                        })
+                        .catch(function(error){
+                            swapiContainer.innerHTML = error;
+                        })                
+               });
         })();
     </script>
 </body>
