@@ -8,6 +8,10 @@
 </head>
 <body>
 
+    <h1>Using Raw XML HttpRequest to fetch the info on both APIs...</h1>
+    </br>
+    </br>
+
     <!-- pokemon info container -->
     <div id="pokeInfo">
 
@@ -45,7 +49,7 @@
                             }                          
                         });
                     }else{
-                        console.error('error');
+                        container.innerHTML = error;
                     }       
                 }
             }
@@ -67,7 +71,7 @@
                             }                          
                         });
                     }else{
-                        console.error('error');
+                        secondContainer.innerHTML = error;
                     }       
                 }
             }
